@@ -1,3 +1,6 @@
+var fetchedMovieData = []
+
+
 var xhr = new XMLHttpRequest();
 xhr.onload = function() {
     var json = xhr.responseText;                         // Response
@@ -7,7 +10,18 @@ xhr.onload = function() {
     if (json.Response ==  "False"){
         console.log("Sorry")
     } else {
-        console.log(json)
+        fetchedMovieData.push({
+            movieID: json.imdbID,
+            rating: json.imdbRating,
+            director: json.Director,
+            releasedYear: json.Year,
+            duration: json.Runtime,
+            title: json.Title,
+            description: json.Plot,
+            poster: json.Poster,
+            type: json.Type,
+            releaseDate: json.Released,
+        })
     }
 };
 // Example:
