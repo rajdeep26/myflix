@@ -17,7 +17,7 @@ var entries = []
 // }
 
 var moviesObjectArray = []
-
+var id = 0;
 
 //Can improve this :(
 	function sanitizeFilename(filename){
@@ -60,18 +60,33 @@ function loadDirEntry(_chosenEntry) {
     				if (!item.isDirectory){
     					// console.log(item);
     					item.getMetadata(function(metadata) { 
-    						console.log("metadata ==> ", metadata); 
-    						moviesObjectArray.push({
+    						// console.log("metadata ==> ", metadata); 
+    						MF.add_movie({
+                                id: id,
     							filename: sanitizeFilename(item.name),
-    							fullPath: item.fullPath,
-    							parentPath: _chosenEntry.fullPath,
-    							size: metadata.size/1024,
-    							modificationDate: metadata.modificationTime,
-    							fileExtension: getFileExtension(item.name)
+    							file_path: item.fullPath,
+    							parent_path: _chosenEntry.fullPath,
+    							file_size: metadata.size/1024,
+    							modification_date: metadata.modificationTime,
+    							file_extension: getFileExtension(item.name)
     						});
+                            moviesObjectArray.push({
+                                id: id,
+                                filename: sanitizeFilename(item.name),
+                                file_path: item.fullPath,
+                                parent_path: _chosenEntry.fullPath,
+                                file_size: metadata.size/1024,
+                                modification_date: metadata.modificationTime,
+                                file_extension: getFileExtension(item.name)
+                            });
+                            id+=1;
+                            
     					});
+
+                        
+
     					
-    				}
+    				};
     				console.log(item)
     				if (item.isDirectory){
     					console.log("DIRECTORY")
@@ -86,10 +101,11 @@ function loadDirEntry(_chosenEntry) {
     	}, errorHandler);
 };
 
-    readEntries(); // Start reading dirs.    
-    for (var i in moviesObjectArray){
-    	queryOmdb(moviesObjectArray[i].filename);
-    }
+    readEntries(); // Start reading dirs.  
+    console.log("big booty bitches === >",moviesObjectArray.length);
+    // for (var i in moviesObjectArray){
+    // 	queryOmdb(moviesObjectArray[i].filename);
+    // }
 }
 }
 

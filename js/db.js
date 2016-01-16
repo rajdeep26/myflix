@@ -12,17 +12,17 @@
   
   // Private properties
   var myflixDB = null,
-      moviesTable = null,
-      movieDetailsTable = null,
-      actorsTable = null;
+  moviesTable = null,
+  movieDetailsTable = null,
+  actorsTable = null;
 
   initialize_myflix_db();
 
   MF.get_movies = function() {
     console.log("BEFORE get movies called ====> ");
     myflixDB.select().
-        from(moviesTable).
-        exec(function(results) {  
+    from(moviesTable).
+    exec(function(results) {  
           // results is an array.
           // Each elements in the array is a nested object.
           console.log("movies ====> ", results);
@@ -55,10 +55,11 @@
     //   ...
     //   PRIMARY KEY ON ('id')
     // );
-    myflixSchemaBuilder.createTable('movies')
+myflixSchemaBuilder.createTable('movies')
         .addColumn('id', lf.Type.INTEGER)
         .addColumn('filename', lf.Type.STRING)
         .addColumn('file_path', lf.Type.STRING)
+        .addColumn('parent_path', lf.Type.STRING)
         .addColumn('modification_date', lf.Type.DATE_TIME)
         .addColumn('file_size', lf.Type.NUMBER)
         .addColumn('file_extension', lf.Type.STRING)
