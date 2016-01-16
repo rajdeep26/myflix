@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Myflix, This is my own netflix.</title>
+
+    <!-- compass styles -->
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/css/print.css" media="print" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+        <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!-- end compass style -->
+
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="css/navbar-static-top.css" rel="stylesheet"> -->
+    <!-- <link href="css/simple-sidebar.css" rel="stylesheet"> -->
+    <!-- <link href="css/nav-sidebar-with-toggle.css" rel="stylesheet"> -->
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div id="wrapper" class="active">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+      <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#"><img id="logo" src="img/logo.png"><span id="main_icon" class="glyphicon glyphicon-chevron-left"></span></a></li>
+      </ul>
+        <ul class="sidebar-nav" id="sidebar">
+          <li><a href="#">
+            <span class="sub_icon glyphicon glyphicon-film"></span>
+            All
+            <span class="sub_icon_collapsed glyphicon glyphicon-film"></span>
+          </a></li>
+          <li><a href="#">
+            <span class="sub_icon glyphicon glyphicon-tag"></span>
+            Genre
+            <span class="sub_icon_collapsed glyphicon glyphicon-tag"></span>
+          </a></li>
+          <li><a href="#">
+            <span class="sub_icon glyphicon glyphicon-time"></span>
+            Year
+            <span class="sub_icon_collapsed glyphicon glyphicon-time"></span>
+          </a></li>
+          <li><a href="#">
+            <span class="sub_icon glyphicon glyphicon-signal"></span>
+            Rating
+            <span class="sub_icon_collapsed glyphicon glyphicon-signal"></span>
+          </a></li>
+          <li><a href="#">
+            <span class="sub_icon glyphicon glyphicon-eye-open"></span>
+            Quality
+            <span class="sub_icon_collapsed glyphicon glyphicon-eye-open"></span>
+          </a></li>
+        </ul>
+      </div>
+      <!-- End Sidebar -->
+
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <!-- Static navbar -->
+          <nav class="navbar navbar-default navbar-static-top">
+            <div class="">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">Sort By:</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="#">Date Added</a></li>
+                    <li><a href="#about">Release Date</a></li>
+                    <li><a href="#contact">Popularity</a></li>
+                    <li><a href="#contact">Rating</a></li>
+                    <li><a href="#contact">Size</a></li>
+                    <li><a href="#contact">Duration</a></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <button id="chooseDirectoryID">Select movie directory</button><br/>
+                  <textarea>
+                  </textarea>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <form class="navbar-form navbar-right" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </nav>
+          <!-- End Static navbar -->
+
+          <!-- Movie List -->
+          <div class="row movie-list">
+            <div class="row movie-line">
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2011</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2012</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2013</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row movie-line">
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2014</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2015</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2016</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row movie-line">
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2017</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2018</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="item year-card">
+                  <ul class="item-list">
+                    <li>Star wars: The Force of Aweken</li>
+                    <li>Ant Man</li>
+                    <li>The Martian</li>
+                    <li>Mad Max</li>
+                    <li>The Revenant</li>
+                    <li>Minions</li>
+                    <li>The Avenger</li>
+                  </ul>
+                  <div class="more-link"><a href="#">view all >></a></div>
+                  <div class="title">2019</div>
+                </div>
+              </div>
+
+            </div>
+            <!-- End last movie lines -->
+          </div>
+          <!-- End Movie List -->
+
+        </div>
+        <!-- End page content wrapper. Everything should go inside of this.-->
+
+      </div>
+      <!-- End Page content -->
+    </div>
+    <!-- End Wrapper -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/toggle.js"></script>
+  </body>
+</html>

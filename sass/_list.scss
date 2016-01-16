@@ -1,0 +1,66 @@
+.movie-list {
+  img {
+    max-width: 100%;
+    min-width: 313px;
+    min-height: 234px;
+  }
+
+  .movie-line {
+    padding: 20px 0;
+  }
+}
+
+.card {
+  @include border-radius(8px);
+  border: 1px solid #E6E6E6;
+  color: #969696;
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  .info {
+    .row {
+      padding: 5px 0;
+    }
+  }
+  .title {
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+  }
+}
+
+.year-card {
+  @include border-radius(8px);
+  border: 2px solid #505176;
+  color: $text-color-grey;
+  font-size: 12px;
+  text-transform: capitalize;
+
+  .item-list {
+    list-style: none;
+    background: #505176;
+    padding: 20px 20px 0;
+    margin: 0;
+  }
+
+  .more-link {
+    text-align: right;
+    background: #505176;
+    padding: 10px;
+
+    a {
+      color: $text-color-grey;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .title {
+    font-size: 44px;
+    font-weight: 500;
+    padding: 10px;
+    color: $base-blue;
+  }
+}
