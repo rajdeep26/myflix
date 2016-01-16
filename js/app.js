@@ -19,6 +19,12 @@ var entries = []
 var moviesObjectArray = []
 
 
+//Can improve this :(
+	function sanitizeFilename(filename){
+		return filename.replace(/(dvdrip|xvid| cd[0-9]|dvdscr|brrip|divx|[\{\(\[]?[0-9]{4}).*/g,"").replace(/\./g," ");
+	}
+
+
 //this can be improved!
 
 function getFileExtension(filename){
@@ -56,7 +62,7 @@ function loadDirEntry(_chosenEntry) {
     					item.getMetadata(function(metadata) { 
     						console.log("metadata ==> ", metadata); 
     						moviesObjectArray.push({
-    							filename: item.name,
+    							filename: sanitizeFilename(item.name),
     							fullPath: item.fullPath,
     							parentPath: _chosenEntry.fullPath,
     							size: metadata.size/1024,
