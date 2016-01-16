@@ -106,3 +106,6 @@ chooseDirectoryBtn.addEventListener('click', function(e) {
 	});
 });
 
+setTimeout(function(){
+  MF.get_movies();
+}, 1000); 
