@@ -35,8 +35,12 @@
   }
 
   MF.add_movie = function(movie_attrs) {
-    var row = moviesTable.createRow(movie_attrs);
-    myflixDB.insertOrReplace().into(moviesTable).values([row]).exec();
+    add_row(moviesTable, movie_attrs);
+  }
+
+  // TODO: Reduce code duplication
+  MF.add_movie_details = function(movie_details_attrs) {
+    add_row(movieDetailsTable, movie_details_attrs);
   }
 
   MF.delete_movie = function(argument) {
@@ -44,6 +48,11 @@
   }
 
   // Private methods
+  function add_row(table_name, row_attrs) {
+    var row = table_name.createRow(row_attrs);
+    myflixDB.insertOrReplace().into(table_name).values([row]).exec();
+  }
+
   function initialize_myflix_db() {
     // SQL equivalent: CREATE DATABASE IF NOT EXISTS myflix
     var myflixSchemaBuilder = lf.schema.create('myflix', 1);
@@ -55,23 +64,35 @@
     //   ...
     //   PRIMARY KEY ON ('id')
     // );
-myflixSchemaBuilder.createTable('movies')
-        .addColumn('id', lf.Type.INTEGER)
-        .addColumn('filename', lf.Type.STRING)
-        .addColumn('file_path', lf.Type.STRING)
-        .addColumn('parent_path', lf.Type.STRING)
-        .addColumn('modification_date', lf.Type.DATE_TIME)
-        .addColumn('file_size', lf.Type.NUMBER)
-        .addColumn('file_extension', lf.Type.STRING)
-        .addPrimaryKey(['id']);
-        // .addIndex('idxFilename', ['filename'], false, lf.Order.DESC);
+    myflixSchemaBuilder.createTable('movies')
+      .addColumn('id', lf.Type.INTEGER)
+      .addColumn('filename', lf.Type.STRING)
+      .addColumn('file_path', lf.Type.STRING)
+      .addColumn('parent_path', lf.Type.STRING)
+      .addColumn('modification_date', lf.Type.DATE_TIME)
+      .addColumn('file_size', lf.Type.NUMBER)
+      .addColumn('file_extension', lf.Type.STRING)
+      .addPrimaryKey(['id']);
+      // .addIndex('idxFilename', ['filename'], false, lf.Order.DESC);
+
+    myflixSchemaBuilder.createTable('movie_details')
+      .addColumn('movie_id', lf.Type.INTEGER)
+      .addColumn('rating', lf.Type.STRING)
+      .addColumn('director', lf.Type.STRING)
+      .addColumn('release_year', lf.Type.INTEGER)
+      .addColumn('duration_mins', lf.Type.INTEGER)
+      .addColumn('title', lf.Type.STRING)
+      .addColumn('description', lf.Type.STRING)
+      .addColumn('poster_url', lf.Type.STRING)
+      .addColumn('type', lf.Type.STRING)
+      .addColumn('release_date', lf.Type.DATE_TIME)
 
     // Promise-based API to get the instance.
     myflixSchemaBuilder.connect().then(function(db) {
       console.log("db connection done");
       myflixDB = db;
       moviesTable = db.getSchema().table('movies');
-      // var movieDetailsTable = db.getSchema().table('movie_details');
+      var movieDetailsTable = db.getSchema().table('movie_details');
       // var actorsTable = db.getSchema().table('actors');
       console.log("db ==> ",db);
       console.log("myflixDB ==> ", myflixDB);

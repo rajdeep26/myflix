@@ -42,71 +42,53 @@ function loadDirEntry(_chosenEntry) {
 		// var entries = [];
     // Call the reader.readEntries() until no more results are returned.
     var readEntries = function() {
-
     	console.log("reading entries");
     	dirReader.readEntries (function(results) {
-    		// console.log("results ==> ",results.length);
-    		// console.log("results ==> ",results);
-
-
     		if (!results.length) {
     			textarea.value = entries.join("\n");
     		} 
     		else {
     			results.forEach(function(item) { 
-    				
     				entries = entries.concat(item.fullPath + " isDirectory ===> " + item.isDirectory + "\n " + sanitizeFilename(item.name) + "\n");
     				//creating a Movie object
     				if (!item.isDirectory){
     					// console.log(item);
     					item.getMetadata(function(metadata) { 
     						// console.log("metadata ==> ", metadata); 
-    						MF.add_movie({
-                                id: id,
-    							filename: sanitizeFilename(item.name),
-    							file_path: item.fullPath,
-    							parent_path: _chosenEntry.fullPath,
-    							file_size: metadata.size/1024,
-    							modification_date: metadata.modificationTime,
-    							file_extension: getFileExtension(item.name)
-    						});
-                            moviesObjectArray.push({
-                                id: id,
-                                filename: sanitizeFilename(item.name),
-                                file_path: item.fullPath,
-                                parent_path: _chosenEntry.fullPath,
-                                file_size: metadata.size/1024,
-                                modification_date: metadata.modificationTime,
-                                file_extension: getFileExtension(item.name)
-                            });
-                            id+=1;
-                            
+                var movie_attrs = {
+                  id: id,
+                  filename: sanitizeFilename(item.name),
+                  file_path: item.fullPath,
+                  parent_path: _chosenEntry.fullPath,
+                  file_size: metadata.size/1024,
+                  modification_date: metadata.modificationTime,
+                  file_extension: getFileExtension(item.name)
+                }
+
+    						MF.add_movie(movie_attrs);
+
+                moviesObjectArray.push(movie_attrs);
+                id+=1;
     					});
-
-                        
-
-    					
     				};
     				console.log(item)
     				if (item.isDirectory){
     					console.log("DIRECTORY")
-
     					// Running the recursion here!
-
     					loadDirEntry(item);
     				}
     			});
     			readEntries();
     		}
     	}, errorHandler);
-};
+    };
 
     readEntries(); // Start reading dirs.  
-    console.log("big booty bitches === >",moviesObjectArray.length);
+    console.log("moviesObjectArray ===>", moviesObjectArray.length);
     // for (var i in moviesObjectArray){
     // 	queryOmdb(moviesObjectArray[i].filename);
     // }
-}
+  }
 }
 
 
