@@ -55,7 +55,7 @@ function loadDirEntry(_chosenEntry) {
     		else {
     			results.forEach(function(item) { 
     				
-    				entries = entries.concat(item.fullPath + " isDirectory ===> " + item.isDirectory);
+    				entries = entries.concat(item.fullPath + " isDirectory ===> " + item.isDirectory + "\n " + sanitizeFilename(item.name) + "\n");
     				//creating a Movie object
     				if (!item.isDirectory){
     					// console.log(item);
@@ -87,7 +87,9 @@ function loadDirEntry(_chosenEntry) {
 };
 
     readEntries(); // Start reading dirs.    
-    console.log(moviesObjectArray);
+    // for (var i in moviesObjectArray){
+    // 	queryOmdb(moviesObjectArray[i].filename);
+    // }
     
 }
 }
