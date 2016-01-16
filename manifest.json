@@ -9,5 +9,10 @@
     "background": {
       "scripts": ["main.js"]
     }
-  }
+  },
+  "permissions": [
+    {
+      "fileSystem": ["write", "retainEntries", "directory"]
+    }
+  ]
 }

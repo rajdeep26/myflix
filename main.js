@@ -21,4 +21,5 @@ chrome.app.runtime.onLaunched.addListener(function() {
       top: Math.round((screenHeight-height)/2)
     }
   });
+  
 });
