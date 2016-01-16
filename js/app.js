@@ -87,10 +87,9 @@ function loadDirEntry(_chosenEntry) {
 };
 
     readEntries(); // Start reading dirs.    
-    // for (var i in moviesObjectArray){
-    // 	queryOmdb(moviesObjectArray[i].filename);
-    // }
-    
+    for (var i in moviesObjectArray){
+    	queryOmdb(moviesObjectArray[i].filename);
+    }
 }
 }
 
