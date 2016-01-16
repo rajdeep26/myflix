@@ -4,6 +4,11 @@
   font-weight: normal;
 }
 
+/* line 8, ../sass/_base.scss */
+img {
+  max-width: 100%;
+}
+
 /* line 1, ../sass/_bootstrap-reset.scss */
 .row {
   margin-left: 0px;
@@ -231,3 +236,53 @@
   padding: 10px;
   color: #505176;
 }
+
+/* line 1, ../sass/_detail.scss */
+.movie-detail {
+  line-height: 2.5em;
+  color: #8A8A8A;
+}
+/* line 5, ../sass/_detail.scss */
+.movie-detail .action-button {
+  margin: 20px 0;
+}
+/* line 8, ../sass/_detail.scss */
+.movie-detail .action-button .col {
+  padding: 7px 0;
+  margin: 10px;
+  text-align: center;
+  color: white;
+}
+/* line 15, ../sass/_detail.scss */
+.movie-detail .action-button a {
+  color: white;
+}
+/* line 20, ../sass/_detail.scss */
+.movie-detail .watchlist {
+  background: #505176;
+}
+/* line 24, ../sass/_detail.scss */
+.movie-detail .watch-later {
+  background: #565656;
+}
+/* line 29, ../sass/_detail.scss */
+.movie-detail .right-col > .row {
+  padding: 20px 0;
+}
+/* line 34, ../sass/_detail.scss */
+.movie-detail .title {
+  font-size: 50px;
+  padding: 10px 0;
+  color: black;
+}
+/* line 40, ../sass/_detail.scss */
+.movie-detail .description {
+  line-height: 1.7em;
+  padding: 10px 0;
+}
+/* line 49, ../sass/_detail.scss */
+.movie-detail .separator {
+  border-right: 2px solid #C3C3C3;
+}
+
+/*# sourceMappingURL=style.css.map */
