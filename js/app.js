@@ -85,9 +85,9 @@ function loadDirEntry(_chosenEntry) {
 
     readEntries(); // Start reading dirs.  
     console.log("moviesObjectArray ===>", moviesObjectArray.length);
-    // for (var i in moviesObjectArray){
-    // 	queryOmdb(moviesObjectArray[i].filename);
-    // }
+    for (var i in moviesObjectArray){
+    	queryOmdb(moviesObjectArray[i].filename);
+    }
   }
 }
 
@@ -105,6 +105,6 @@ chooseDirectoryBtn.addEventListener('click', function(e) {
 	});
 });
 
-setTimeout(function(){
-  MF.get_movies();
-}, 1000); 
+// setTimeout(function(){
+//   MF.get_movies();
+// }, 5000); 

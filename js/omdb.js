@@ -1,5 +1,5 @@
 var fetchedMovieData = []
-
+var movie_detail = 0
 
 var xhr = new XMLHttpRequest();
 xhr.onload = function() {
@@ -11,21 +11,25 @@ xhr.onload = function() {
         console.log("Sorry")
     } else {
         fetchedMovieData.push({
-            movieID: json.imdbID,
+            id:movie_detail,
+            movie_id: json.imdbID,
             rating: json.imdbRating,
             director: json.Director,
-            releasedYear: json.Year,
-            duration: json.Runtime,
+            released_year: json.Year,
+            duration_mins: json.Runtime,
             title: json.Title,
             description: json.Plot,
-            poster: json.Poster,
+            poster_url: json.Poster,
             type: json.Type,
-            releaseDate: json.Released,
+            release_date: json.Released,
         })
+        id+=1
+        console.log("API called");
     }
 };
 // Example:
 function queryOmdb(movieTitle){
     xhr.open('GET', 'http://www.omdbapi.com/?t=' + encodeURIComponent(movieTitle));    
     xhr.send();
+    console.log("calling API");
 }
