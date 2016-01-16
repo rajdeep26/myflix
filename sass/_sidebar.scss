@@ -1,0 +1,155 @@
+@import "compass/css3/transition";
+
+#wrapper {
+  padding-left: 70px;
+  transition: all .4s ease 0s;
+  height: 100%;
+
+  &.active {
+    padding-left: 230px;
+
+    #sidebar-wrapper {
+      left: 230px;
+    }
+
+    .sub_icon_collapsed {
+      display: none;
+    }
+  }
+}
+
+#sidebar-wrapper {
+  margin-left: -230px;
+  left: 70px;
+  width: 230px;
+  background: #505176;
+  position: fixed;
+  height: 100%;
+  z-index: 10000;
+  transition: all .4s ease 0s;
+
+  li a {
+    color: #E7E7E7;
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 230px;
+    @include transition(background, 5s);
+  }
+}
+
+.sidebar-nav {
+  display: block;
+  float: left;
+  width: 230px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    line-height: 40px;
+    text-indent: 20px;
+    a {
+      color: #E7E7E7;
+      display: block;
+      text-decoration: none;
+      &:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+      }
+
+      &:active, &.focus {
+        text-decoration: none;
+      }
+    }
+  }
+  > .sidebar-brand {
+    height: 65px;
+    line-height: 60px;
+    font-size: 18px;
+
+    a {
+      color: #fff;
+      background: none;
+    }
+  }
+}
+
+#sidebar_menu {
+  background: #46A9D4;
+}
+
+.sidebar_name {
+  padding-top: 25px;
+  color: #fff;
+  opacity: .7;
+}
+
+#page-content-wrapper {
+  padding-left: 0;
+  margin-left: 0;
+  width: 100%;
+  height: auto;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+#main_icon {
+  float: right;
+  right: 10%;
+  top: 20px;
+}
+
+.sub_icon {
+  vertical-align: middle;
+  padding-right: 20px
+}
+
+.sub_icon_collapsed {
+  float: right;
+  vertical-align: middle;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
+.content-header {
+  height: 65px;
+  line-height: 65px;
+}
+
+.content-header {
+  h1 {
+    margin: 0;
+    margin-left: 20px;
+    line-height: 65px;
+    display: inline-block;
+  }
+}
+
+@media (max-width:767px) {
+  #wrapper {
+    padding-left: 70px;
+    transition: all .4s ease 0s;
+  }
+  #sidebar-wrapper {
+    left: 70px;
+  }
+  #wrapper {
+    &.active {
+      padding-left: 150px;
+
+      #sidebar-wrapper {
+        left: 150px;
+        width: 150px;
+        transition: all .4s ease 0s;
+      }
+    }
+  }
+}
+
+#logo {
+  width: 140px;
+}

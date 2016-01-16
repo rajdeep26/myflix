@@ -1,0 +1,174 @@
+/* line 3, ../sass/_sidebar.scss */
+#wrapper {
+  padding-left: 70px;
+  transition: all .4s ease 0s;
+  height: 100%;
+}
+/* line 8, ../sass/_sidebar.scss */
+#wrapper.active {
+  padding-left: 230px;
+}
+/* line 11, ../sass/_sidebar.scss */
+#wrapper.active #sidebar-wrapper {
+  left: 230px;
+}
+/* line 15, ../sass/_sidebar.scss */
+#wrapper.active .sub_icon_collapsed {
+  display: none;
+}
+
+/* line 21, ../sass/_sidebar.scss */
+#sidebar-wrapper {
+  margin-left: -230px;
+  left: 70px;
+  width: 230px;
+  background: #505176;
+  position: fixed;
+  height: 100%;
+  z-index: 10000;
+  transition: all .4s ease 0s;
+}
+/* line 31, ../sass/_sidebar.scss */
+#sidebar-wrapper li a {
+  color: #E7E7E7;
+  display: block;
+  float: left;
+  text-decoration: none;
+  width: 230px;
+  -moz-transition: background, 5s;
+  -o-transition: background, 5s;
+  -webkit-transition: background, 5s;
+  transition: background, 5s;
+}
+
+/* line 41, ../sass/_sidebar.scss */
+.sidebar-nav {
+  display: block;
+  float: left;
+  width: 230px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 49, ../sass/_sidebar.scss */
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+/* line 52, ../sass/_sidebar.scss */
+.sidebar-nav li a {
+  color: #E7E7E7;
+  display: block;
+  text-decoration: none;
+}
+/* line 56, ../sass/_sidebar.scss */
+.sidebar-nav li a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+/* line 62, ../sass/_sidebar.scss */
+.sidebar-nav li a:active, .sidebar-nav li a.focus {
+  text-decoration: none;
+}
+/* line 67, ../sass/_sidebar.scss */
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  line-height: 60px;
+  font-size: 18px;
+}
+/* line 72, ../sass/_sidebar.scss */
+.sidebar-nav > .sidebar-brand a {
+  color: #fff;
+  background: none;
+}
+
+/* line 79, ../sass/_sidebar.scss */
+#sidebar_menu {
+  background: #46A9D4;
+}
+
+/* line 83, ../sass/_sidebar.scss */
+.sidebar_name {
+  padding-top: 25px;
+  color: #fff;
+  opacity: .7;
+}
+
+/* line 89, ../sass/_sidebar.scss */
+#page-content-wrapper {
+  padding-left: 0;
+  margin-left: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* line 96, ../sass/_sidebar.scss */
+#page-content-wrapper {
+  width: 100%;
+}
+
+/* line 100, ../sass/_sidebar.scss */
+#main_icon {
+  float: right;
+  right: 10%;
+  top: 20px;
+}
+
+/* line 106, ../sass/_sidebar.scss */
+.sub_icon {
+  vertical-align: middle;
+  padding-right: 20px;
+}
+
+/* line 111, ../sass/_sidebar.scss */
+.sub_icon_collapsed {
+  float: right;
+  vertical-align: middle;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
+/* line 118, ../sass/_sidebar.scss */
+.content-header {
+  height: 65px;
+  line-height: 65px;
+}
+
+/* line 124, ../sass/_sidebar.scss */
+.content-header h1 {
+  margin: 0;
+  margin-left: 20px;
+  line-height: 65px;
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  /* line 133, ../sass/_sidebar.scss */
+  #wrapper {
+    padding-left: 70px;
+    transition: all .4s ease 0s;
+  }
+
+  /* line 137, ../sass/_sidebar.scss */
+  #sidebar-wrapper {
+    left: 70px;
+  }
+
+  /* line 141, ../sass/_sidebar.scss */
+  #wrapper.active {
+    padding-left: 150px;
+  }
+  /* line 144, ../sass/_sidebar.scss */
+  #wrapper.active #sidebar-wrapper {
+    left: 150px;
+    width: 150px;
+    transition: all .4s ease 0s;
+  }
+}
+/* line 153, ../sass/_sidebar.scss */
+#logo {
+  width: 140px;
+}
+
+/*# sourceMappingURL=style.css.map */

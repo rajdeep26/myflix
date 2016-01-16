@@ -1,0 +1,26 @@
+{
+  "name": "myflix",
+  "homepage": "https://github.com/vacationlabs/myflix",
+  "description": "Bro, This is my own local netflix, I call it myflix :)",
+  "main": "myflix.js",
+  "moduleType": [],
+  "keywords": [
+    "myflix",
+    "local"
+  ],
+  "authors": [
+    "Mahesh",
+    "Rajdeep and valindo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
