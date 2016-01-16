@@ -191,3 +191,43 @@
   font-size: 16px;
   color: black;
 }
+
+/* line 32, ../sass/_list.scss */
+.year-card {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  border: 2px solid #505176;
+  color: #C3C3C3;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+/* line 39, ../sass/_list.scss */
+.year-card .item-list {
+  list-style: none;
+  background: #505176;
+  padding: 20px 20px 0;
+  margin: 0;
+}
+/* line 46, ../sass/_list.scss */
+.year-card .more-link {
+  text-align: right;
+  background: #505176;
+  padding: 10px;
+}
+/* line 51, ../sass/_list.scss */
+.year-card .more-link a {
+  color: #C3C3C3;
+  text-decoration: none;
+}
+/* line 54, ../sass/_list.scss */
+.year-card .more-link a:hover {
+  text-decoration: underline;
+}
+/* line 60, ../sass/_list.scss */
+.year-card .title {
+  font-size: 44px;
+  font-weight: 500;
+  padding: 10px;
+  color: #505176;
+}

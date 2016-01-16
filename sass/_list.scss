@@ -27,5 +27,40 @@
     font-size: 16px;
     color: black;
   }
+}
 
+.year-card {
+  @include border-radius(8px);
+  border: 2px solid #505176;
+  color: $text-color-grey;
+  font-size: 12px;
+  text-transform: capitalize;
+
+  .item-list {
+    list-style: none;
+    background: #505176;
+    padding: 20px 20px 0;
+    margin: 0;
+  }
+
+  .more-link {
+    text-align: right;
+    background: #505176;
+    padding: 10px;
+
+    a {
+      color: $text-color-grey;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .title {
+    font-size: 44px;
+    font-weight: 500;
+    padding: 10px;
+    color: $base-blue;
+  }
 }
