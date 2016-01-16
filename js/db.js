@@ -76,6 +76,7 @@
       // .addIndex('idxFilename', ['filename'], false, lf.Order.DESC);
 
     myflixSchemaBuilder.createTable('movie_details')
+      .addColumn('id', lf.Type.INTEGER)
       .addColumn('movie_id', lf.Type.INTEGER)
       .addColumn('rating', lf.Type.STRING)
       .addColumn('director', lf.Type.STRING)
@@ -86,6 +87,7 @@
       .addColumn('poster_url', lf.Type.STRING)
       .addColumn('type', lf.Type.STRING)
       .addColumn('release_date', lf.Type.DATE_TIME)
+      .addPrimaryKey(['id']);
 
     // Promise-based API to get the instance.
     myflixSchemaBuilder.connect().then(function(db) {
