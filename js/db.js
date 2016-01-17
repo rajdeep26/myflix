@@ -16,6 +16,10 @@
       movieDetailsTable = null,
       actorsTable = null;
 
+  // Public properties
+  MF.moviesYearWise = [];
+
+
   initialize_myflix_db();
 
   MF.print_prom_data = function(prom) {
@@ -29,7 +33,7 @@
    Movies CRUD API
   ==========================================================
   */
-  
+
   MF.get_movies = function() {
     return get_list(moviesTable);
   }
@@ -72,6 +76,33 @@
     return delete_row(movieDetailsTable, movie_details_id)
   }
 
+  /*
+  ==============================================================
+    Creating collections
+  ==============================================================
+  */
+  MF.group_movies_by_year = function() {    
+    var distinctYearQuery = myflixDB.select(lf.fn.distinct(movieDetailsTable.release_year).as("year")).
+                            from(movieDetailsTable);
+
+    var distinctYearProm = distinctYearQuery.exec();
+
+    distinctYearProm.then(function(data) {
+      data.forEach(function(row) {
+        var year = row.year.toString();
+        var moviesInYearquery = myflixDB.select().
+                                from(moviesTable).
+                                innerJoin(movieDetailsTable, movieDetailsTable.movie_id.eq(moviesTable.id)).
+                                where(movieDetailsTable.release_year.eq(row.year));
+        var prom = moviesInYearquery.exec();
+        prom.then(function(moviesData) {
+          MF.moviesYearWise.push({year: row.year, movies: moviesData});
+        });
+      });
+    });
+
+    return distinctYearProm;
+  }
  
   /*
   ==============================================================
@@ -89,8 +120,8 @@
 
   function get_row(table_name, row_id) {
     var prom = myflixDB.select().
-            from(table_name).
-            where(table_name.id.eq(row_id)).exec();
+                        from(table_name).
+                        where(table_name.id.eq(row_id)).exec();
     // prom.then(function(data) {
     //   console.log("select results ==> ", data);
     // });
