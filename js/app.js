@@ -24,6 +24,8 @@ var entries = []
 
 var moviesObjectArray = []
 var id = 0;
+var extensions = ["mp4","avi","mkv"];
+
 
 //Can improve this :(
 	function sanitizeFilename(filename){
@@ -79,12 +81,13 @@ function loadDirEntry(_chosenEntry) {
                                     modification_date: metadata.modificationTime,
                                     file_extension: getFileExtension(item.name)
                                 };
-
-                                console.log(movie_attrs);
-                                console.log(moviesObjectArray.length);
-                                moviesObjectArray.push(movie_attrs);
-                                MF.add_movie(movie_attrs);
-                                id+=1;
+                                if (extensions.indexOf(movie_attrs.file_extension) >= 0){
+                                    console.log(movie_attrs);
+                                    console.log(moviesObjectArray.length);
+                                    moviesObjectArray.push(movie_attrs);
+                                    MF.add_movie(movie_attrs);
+                                    id+=1;
+                                }
     					   });
     				    };
     				    console.log(item)
@@ -123,7 +126,7 @@ function fetchMovieDetailsFromOMDB() {
             clearInterval(queryApi);
             return;
         }
-        queryOmdb(data[i].filename);
+        queryOmdb(data[i].filename,data[i].id);
         i+=1;
     }
   });
