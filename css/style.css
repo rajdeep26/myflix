@@ -1,6 +1,21 @@
+#main-page {
+  display: none;
+}
+
 #list-page {
   display: none;
 }
+
+.select-directory-container {
+  margin-top: 25%;
+  vertical-align: center;
+  border-radius: 0px !important;
+}
+
+
+/*TODO : Need to put this inside sass file*/
+/*=================================================================*/
+
 
 /* line 3, ../sass/_base.scss */
 .font-normal {

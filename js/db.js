@@ -14,6 +14,7 @@
   var myflixDB = null,
       moviesTable = null,
       movieDetailsTable = null,
+      movieDirectoriesTable = null,
       actorsTable = null;
 
   // Public properties
@@ -26,6 +27,21 @@
     prom.then(function(data) {
       console.log("select results ==> ", data);
     });
+  }
+
+  /*
+  ==========================================================
+   Movies directory API
+  ==========================================================
+  */
+
+  MF.add_movie_directory = function(dir_path) {
+    // Delete everything from the DB
+    // myflixDB.delete().from(movieDirectoriesTable).exec();
+
+    // Add a new directory entry
+    var prom = add_row(movieDirectoriesTable, {id: 0, directory_path: dir_path});
+    return prom;
   }
 
   /*
@@ -48,6 +64,14 @@
 
   MF.delete_movie = function(movie_id) {
     return delete_row(moviesTable, movie_id);
+  }
+
+  MF.get_movies_w_details = function() {
+    var prom = myflixDB.select().
+                        from(moviesTable).
+                        innerJoin(movieDetailsTable, movieDetailsTable.movie_id.eq(moviesTable.id)).
+                        exec();
+    return prom;
   }
 
 
@@ -176,12 +200,18 @@
       .addColumn('release_date', lf.Type.DATE_TIME)
       .addPrimaryKey(['id']);
 
+    myflixSchemaBuilder.createTable('movie_directories')
+      .addColumn('id', lf.Type.INTEGER)
+      .addColumn('directory_path', lf.Type.STRING)
+      .addPrimaryKey(['id']);
+
     // Promise-based API to get the instance.
     myflixSchemaBuilder.connect().then(function(db) {
       console.log("db connection done");
       myflixDB = db;
       moviesTable = db.getSchema().table('movies');
       movieDetailsTable = db.getSchema().table('movie_details');
+      movieDirectoriesTable = db.getSchema().table('movie_directories');
       // var actorsTable = db.getSchema().table('actors');
       console.log("db ==> ",db);
       console.log("myflixDB ==> ", myflixDB);

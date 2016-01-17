@@ -37,6 +37,99 @@
 
   </head>
   <body>
+    <!-- Directory selector page -->
+    <div id="directory-selector-page">
+      <div id="wrapper" class="active">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+        <ul id="sidebar_menu" class="sidebar-nav">
+             <li class="sidebar-brand"><a id="menu-toggle" href="#"><img id="logo" src="img/logo.png"><span id="main_icon" class="glyphicon glyphicon-chevron-left"></span></a></li>
+        </ul>
+          <ul class="sidebar-nav" id="sidebar">
+            <li><a href="#">
+              <span class="sub_icon glyphicon glyphicon-film"></span>
+              All
+              <span class="sub_icon_collapsed glyphicon glyphicon-film"></span>
+            </a></li>
+            <li><a href="#">
+              <span class="sub_icon glyphicon glyphicon-tag"></span>
+              Genre
+              <span class="sub_icon_collapsed glyphicon glyphicon-tag"></span>
+            </a></li>
+            <li><a href="#" id="moviesCollectionByYearID">
+              <span class="sub_icon glyphicon glyphicon-time"></span>
+              Year
+              <span class="sub_icon_collapsed glyphicon glyphicon-time"></span>
+            </a></li>
+            <li><a href="#">
+              <span class="sub_icon glyphicon glyphicon-signal"></span>
+              Rating
+              <span class="sub_icon_collapsed glyphicon glyphicon-signal"></span>
+            </a></li>
+            <li><a href="#">
+              <span class="sub_icon glyphicon glyphicon-eye-open"></span>
+              Quality
+              <span class="sub_icon_collapsed glyphicon glyphicon-eye-open"></span>
+            </a></li>
+          </ul>
+        </div>
+        <!-- End Sidebar -->
+
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+          <!-- Keep all page content within the page-content inset div! -->
+          <div class="page-content inset">
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default navbar-static-top">
+              <div class="">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Sort By:</a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                      <li><a href="#">Date Added</a></li>
+                      <li><a href="#about">Release Date</a></li>
+                      <li><a href="#contact">Popularity</a></li>
+                      <li><a href="#contact">Rating</a></li>
+                      <li><a href="#contact">Size</a></li>
+                      <li><a href="#contact">Duration</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </nav>
+            <!-- End Static navbar -->
+            
+            <div class="select-directory-container text-center">
+              <button id="chooseDirectoryID" class="btn btn-primary btn-large">Select movie directory</button><br/>
+              <span id="loading-msg"></span>
+              <!-- <textarea></textarea> -->
+            </div>
+
+          </div>
+          <!-- End page content wrapper. Everything should go inside of this.-->
+
+        </div>
+        <!-- End Page content -->
+      </div>
+      <!-- End Wrapper -->
+    </div>
+
     <!-- Main page -->
     <div id="main-page">
       <div id="wrapper" class="active">
@@ -103,12 +196,6 @@
                       <li><a href="#contact">Duration</a></li>
                     </ul>
                   </div>
-
-                  <div>
-                    <button id="chooseDirectoryID">Select movie directory</button><br/>
-                    <textarea>
-                    </textarea>
-                  </div>
                 </div>
                 <div class="col-md-4">
                   <form class="navbar-form navbar-right" role="search">
@@ -122,203 +209,19 @@
             <!-- End Static navbar -->
 
             <!-- Movie List -->
-            <div class="row movie-list">
-              <div class="row movie-line">
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://saveriovalenti.com/wp-content/uploads/2015/09/Into-the-wild-Alexander-Super-Tramp.jpeg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="row movie-line">
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="row movie-line">
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="item card">
-                    <img src="http://l.yimg.com/dh/ap/default/120803/main_quad_aw__23524__looper.jpg" alt="">
-                    <div class="info">
-                      <div class="row">
-                        <div class="col-md-8 title">Looper <span class="font-normal">(2012)</span></div>
-                        <div class="col-md-4 duration text-right"> 2h 15m</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 rating-star">****</div>
-                        <div class="col-md-4 rating text-right">7.9/10</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 tags">Action, Crime, Sci-Fi</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+            <div id="movie-list-container" class="row movie-list">
+              
               <!-- End last movie lines -->
             </div>
             <!-- End Movie List -->
-
-            <button id="chooseDirectoryID">Select movie directory</button>
-
-            <textarea></textarea>
           </div>
           <!-- End page content wrapper. Everything should go inside of this.-->
 
         </div>
         <!-- End Page content -->
       </div>
+      <!-- End Wrapper -->
     </div>
-    <!-- End Wrapper -->
 
     <div id="list-page">
       <div id="wrapper" class="active">
@@ -386,11 +289,6 @@
                     </ul>
                   </div>
 
-                  <div>
-                    <button id="chooseDirectoryID">Select movie directory</button><br/>
-                    <textarea>
-                    </textarea>
-                  </div>
                 </div>
                 <div class="col-md-4">
                   <form class="navbar-form navbar-right" role="search">

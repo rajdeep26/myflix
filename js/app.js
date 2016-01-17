@@ -6,6 +6,7 @@ var height = 300;
 var chooseDirectoryBtn = document.querySelector('#chooseDirectoryID');
 var textarea = document.querySelector('textarea');
 var yearCollectionLink = document.querySelector("#moviesCollectionByYearID");
+var loadingMessageDiv = document.querySelector("#loading-msg");
 // var yearCollectionLink = document.querySelector("#moviesCollectionByYearID");
 
 function errorHandler(e) {
@@ -59,7 +60,7 @@ function loadDirEntry(_chosenEntry) {
                 
             }
     		if (!results.length) {
-                textarea.value = entries.join("\n");
+                // textarea.value = entries.join("\n");
                 // console.log(test);
                 // test+=1;
                 return;
@@ -145,27 +146,125 @@ function fetchMovieDetailsFromOMDB() {
 
 }
 
+function add_poster_image(index, poster_url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', poster_url, true);
+  xhr.responseType = 'blob';
+  xhr.onload = function(e) {
+    var img = document.createElement('img');
+    img.src = window.URL.createObjectURL(this.response);
+    $("#movie-id-"+index).find("img").replaceWith(img);
+    // document.body.appendChild(img);
+  };
+
+  xhr.send();
+}
+
+function show_movies_on_main_page(movies) {
+  var movie_list_container = document.querySelector("#movie-list-container");
+  movies.forEach(function(obj, index) {
+    var movie_line_id = index/3;
+    console.log("INDEX ==========================> ", index);
+    if (index%3 == 0) {
+      // 
+      var movie_html_div_template_str = '<div class="row movie-line" id="movie-line-id-'+movie_line_id+'">' +
+                                      '<div class="col-md-4" id="movie-id-'+index+'" >' +
+                                        '<div class="item card">' +
+                                          '<img src="'+ obj.movie_details.poster_url +'" alt="">' +
+                                          '<div class="info">' +
+                                            '<div class="row">' +
+                                              '<div class="col-md-8 title">'+ obj.movie_details.title +' <span class="font-normal">('+ obj.movie_details.release_year +')</span></div>' +
+                                              '<div class="col-md-4 duration text-right"> '+ obj.movie_details.duration_mins+'</div>' +
+                                            '</div>' +
+                                            '<div class="row">' +
+                                              '<div class="col-md-8 rating-star">***</div>' +
+                                              '<div class="col-md-4 rating text-right">'+obj.movie_details.rating+'/10</div>' +
+                                            '</div>' +
+                                            '<div class="row">' +
+                                              '<div class="col-md-12 tags">Action, Crime, Sci-Fi</div>' +
+                                            '</div>' +
+                                          '</div>' +
+                                        '</div>' +
+                                      '</div>'
+                                    '</div>';
+
+      $(movie_list_container).append(movie_html_div_template_str);
+      add_poster_image(index, obj.movie_details.poster_url);
+
+    } else {
+      console.log("obj ===>", obj);
+      var movie_html_template_str = '<div class="col-md-4" id="movie-id-'+index+'">' +
+                                      '<div class="item card">' +
+                                        '<img src="'+ obj.movie_details.poster_url +'" alt="">' +
+                                        '<div class="info">' +
+                                          '<div class="row">' +
+                                            '<div class="col-md-8 title">'+ obj.movie_details.title +' <span class="font-normal">('+ obj.movie_details.release_year +')</span></div>' +
+                                            '<div class="col-md-4 duration text-right"> '+ obj.movie_details.duration_mins+'</div>' +
+                                          '</div>' +
+                                          '<div class="row">' +
+                                            '<div class="col-md-8 rating-star">***</div>' +
+                                            '<div class="col-md-4 rating text-right">'+obj.movie_details.rating+'/10</div>' +
+                                          '</div>' +
+                                          '<div class="row">' +
+                                            '<div class="col-md-12 tags">Action, Crime, Sci-Fi</div>' +
+                                          '</div>' +
+                                        '</div>' +
+                                      '</div>' +
+                                    '</div>';
+
+
+      console.log("trying to get the movie line container");
+      movie_list_line_container = $("#movie-line-id-"+Math.floor(movie_line_id));
+      console.log("movie_list_line_container", movie_list_line_container)
+      movie_list_line_container.append(movie_html_template_str);
+      add_poster_image(index, obj.movie_details.poster_url);
+    };
+  });
+}
+
+function load_main_page_from_dir_selector_page() {
+   var prom = MF.get_movies_w_details();
+
+   prom.then(function(data) {
+    console.log("get movies o/p =>", data);
+    document.querySelector("#directory-selector-page").style.display = "none";
+    document.querySelector("#main-page").style.display = "block";
+
+    show_movies_on_main_page(data);
+   });
+}
+
 
 chooseDirectoryBtn.addEventListener('click' , function(e) {
-	console.log("click event ==> ", e);
+	// console.log("click event ==> ", e);
 	chrome.fileSystem.chooseEntry({type: 'openDirectory'}, function(theEntry, folderFiles) {
 		if (!theEntry) {
 			console.log("No directory selected");
 			return;
 		}
-		console.log("theEntry ===> ", theEntry);
-		console.log("folderFiles ===> ", folderFiles);
-        console.log("I reach here!!")        
+		// console.log("theEntry ===> ", theEntry);
+		// console.log("folderFiles ===> ", folderFiles);
+        // console.log("I reach here!!")        
+
         // setTimeout(function(){
         //     console.log("This is to check for moviesObjectArray == >", moviesObjectArray.length);
         // }, loadDirEntry(theEntry)); 
 
+        console.log("theEntry", theEntry);
+
+        loadingMessageDiv.innerHTML = "Storing movie directory location...";
+        MF.add_movie_directory(theEntry.fullPath);
+
+        loadingMessageDiv.innerHTML = "Reading movies from directory...";
         loadDirEntry(theEntry);
 
+        loadingMessageDiv.innerHTML = "Fetching data from API...";
         setTimeout(function(){
-            fetchMovieDetailsFromOMDB(); 
+          fetchMovieDetailsFromOMDB(); 
+          load_main_page_from_dir_selector_page()
         },10000);
         
+
 	});
 });
 
