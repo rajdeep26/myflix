@@ -18,39 +18,95 @@
 
   initialize_myflix_db();
 
+  MF.print_prom_data = function(prom) {
+    prom.then(function(data) {
+      console.log("select results ==> ", data);
+    });
+  }
+
+  /*
+  ==========================================================
+   Movies CRUD API
+  ==========================================================
+  */
+  
   MF.get_movies = function() {
-    console.log("BEFORE get movies called ====> ");
-    myflixDB.select().
-    from(moviesTable).
-    exec(function(results) {  
-          // results is an array.
-          // Each elements in the array is a nested object.
-          console.log("movies ====> ", results);
-        });
-    console.log("AFTER get movies called");
+    return get_list(moviesTable);
   }
 
   MF.get_movie = function(movie_id) {
-    // body...
-  }
+    return get_row(moviesTable, movie_id);
+  }  
 
   MF.add_movie = function(movie_attrs) {
-    add_row(moviesTable, movie_attrs);
+    return add_row(moviesTable, movie_attrs);
   }
 
-  // TODO: Reduce code duplication
+  MF.delete_movie = function(movie_id) {
+    return delete_row(moviesTable, movie_id);
+  }
+
+
+  /*
+  =============================================================
+    Movie Details CRUD API
+  =============================================================
+  */
+
+  MF.get_all_movie_details = function() {
+    return get_list(movieDetailsTable);
+  }
+
+  MF.get_movie_details = function(movie_id) {
+    var prom = myflixDB.select().
+            from(movieDetailsTable).
+            where(movieDetailsTable.movie_id.eq(movie_id)).exec();
+    return prom;
+  }
+
   MF.add_movie_details = function(movie_details_attrs) {
-    add_row(movieDetailsTable, movie_details_attrs);
+    return add_row(movieDetailsTable, movie_details_attrs);
   }
 
-  MF.delete_movie = function(argument) {
-    // body...
+  MF.delete_movie_details = function(movie_details_id) {
+    return delete_row(movieDetailsTable, movie_details_id)
   }
 
-  // Private methods
+ 
+  /*
+  ==============================================================
+    Private methods
+  ==============================================================
+   */
   function add_row(table_name, row_attrs) {
     var row = table_name.createRow(row_attrs);
-    myflixDB.insertOrReplace().into(table_name).values([row]).exec();
+    return myflixDB.insertOrReplace().into(table_name).values([row]).exec();
+  }
+
+  function delete_row(table_name, row_id) {
+    return myflixDB.delete().from(table_name).where(table_name.id.eq(row_id)).exec();
+  }
+
+  function get_row(table_name, row_id) {
+    var prom = myflixDB.select().
+            from(table_name).
+            where(table_name.id.eq(row_id)).exec();
+    // prom.then(function(data) {
+    //   console.log("select results ==> ", data);
+    // });
+    return prom; 
+  }
+
+  function get_list(table_name) {
+    var prom = myflixDB.select().
+                        from(table_name).
+                        exec();
+    // prom.then(function(data) {
+    //   for (var i in data){
+    //     console.log("select results ==> ", data[i]);
+    //   }
+    // });
+    return prom;
   }
 
   function initialize_myflix_db() {
@@ -94,7 +150,7 @@
       console.log("db connection done");
       myflixDB = db;
       moviesTable = db.getSchema().table('movies');
-      // movieDetailsTable = db.getSchema().table('movie_details');
+      movieDetailsTable = db.getSchema().table('movie_details');
       // var actorsTable = db.getSchema().table('actors');
       console.log("db ==> ",db);
       console.log("myflixDB ==> ", myflixDB);
