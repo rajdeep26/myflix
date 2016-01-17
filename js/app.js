@@ -24,6 +24,8 @@ var entries = []
 
 var moviesObjectArray = []
 var id = 0;
+var extensions = ["mp4","avi","mkv"];
+
 
 //Can improve this :(
 	function sanitizeFilename(filename){
@@ -39,65 +41,108 @@ function getFileExtension(filename){
 
 
 
-
+var test = 0;
 function loadDirEntry(_chosenEntry) {
 	console.log("loadDirEntry called")
 	chosenEntry = _chosenEntry;
 	if (chosenEntry.isDirectory) {
 		var dirReader = chosenEntry.createReader();
 		// var entries = [];
-    // Call the reader.readEntries() until no more results are returned.
-    var readEntries = function() {
-    	console.log("reading entries");
-    	dirReader.readEntries (function(results) {
+        // Call the reader.readEntries() until no more results are returned.
+        var readEntries = function() {
+    	   console.log("reading entries");
+    	   dirReader.readEntries (function(results) {
+            console.log("YOOOO");
+            console.log(results);
+            if (results == "") {
+                console.log("I am empty")
+                
+            }
     		if (!results.length) {
-    			textarea.value = entries.join("\n");
-    		} 
-    		else {
-    			results.forEach(function(item) { 
-    				entries = entries.concat(item.fullPath + " isDirectory ===> " + item.isDirectory + "\n " + sanitizeFilename(item.name) + "\n");
-    				//creating a Movie object
-    				if (!item.isDirectory){
-    					// console.log(item);
-    					item.getMetadata(function(metadata) { 
-    						// console.log("metadata ==> ", metadata); 
-                var movie_attrs = {
-                  id: id,
-                  filename: sanitizeFilename(item.name),
-                  file_path: item.fullPath,
-                  parent_path: _chosenEntry.fullPath,
-                  file_size: metadata.size/1024,
-                  modification_date: metadata.modificationTime,
-                  file_extension: getFileExtension(item.name)
-                }
+                textarea.value = entries.join("\n");
+                // console.log(test);
+                // test+=1;
+                return;
+    		  } 
+    		  else {
+    		      	results.forEach(function(item) { 
+    			     	entries = entries.concat(item.fullPath + " isDirectory ===> " + item.isDirectory + "\n " + sanitizeFilename(item.name) + "\n");
+    				    //creating a Movie object
+    				    if (!item.isDirectory){
+    					   // console.log(item);
+    					   item.getMetadata(function(metadata) { 
+    						  // console.log("metadata ==> ", metadata); 
+                                var movie_attrs = {
+                                    id: id,
+                                    filename: sanitizeFilename(item.name),
+                                    file_path: item.fullPath,
+                                    parent_path: _chosenEntry.fullPath,
+                                    file_size: metadata.size/1024,
+                                    modification_date: metadata.modificationTime,
+                                    file_extension: getFileExtension(item.name)
+                                };
+                                if (extensions.indexOf(movie_attrs.file_extension) >= 0){
+                                    console.log(movie_attrs);
+                                    console.log(moviesObjectArray.length);
+                                    moviesObjectArray.push(movie_attrs);
+                                    MF.add_movie(movie_attrs);
+                                    id+=1;
+                                }
+    					   });
+    				    };
+    				    console.log(item)
+    				    if (item.isDirectory){
+    					   console.log("DIRECTORY")
+    					   //Running the recursion here!
+    					   loadDirEntry(item);
+    				    }
 
-    						MF.add_movie(movie_attrs);
-
-                moviesObjectArray.push(movie_attrs);
-                id+=1;
-    					});
-    				};
-    				console.log(item)
-    				if (item.isDirectory){
-    					console.log("DIRECTORY")
-    					// Running the recursion here!
-    					loadDirEntry(item);
-    				}
-    			});
-    			readEntries();
-    		}
+                    });
+                    readEntries();
+                    
+    			
+            }
     	}, errorHandler);
     };
-
-    readEntries(); // Start reading dirs.  
-  }
+    //Start reading directories
+    readEntries();
+    }
 }
 
 function fetchMovieDetailsFromOMDB() {
+
   console.log("moviesObjectArray ===>", moviesObjectArray.length);
-  for (var i in moviesObjectArray){
-    queryOmdb(moviesObjectArray[i].filename);
-  }
+  // for (var i = 0; i < moviesObjectArray.length; i++){
+  //       queryOmdb(moviesObjectArray[i].filename);
+  // }
+
+  var prom = MF.get_movies();
+  prom.then(function(data){
+    var queryApi = setInterval(loop,3000);
+    var i = 0
+    function loop(){
+        if (i >= data.length) {
+            console.log("I reach here");
+            clearInterval(queryApi);
+            return;
+        }
+        queryOmdb(data[i].filename,data[i].id);
+        i+=1;
+    }
+  });
+
+  // var testing = setInterval(loop,3000);
+  //   var i = 0
+  //   function loop(){
+  //       if (i >= moviesObjectArray.length) {
+  //           console.log("I reach here");
+  //           clearInterval(testing);
+  //           return;
+  //       }
+  //       queryOmdb(moviesObjectArray[i].filename);
+  //       i+=1;
+  //   }
+
 }
 
 
@@ -110,8 +155,17 @@ chooseDirectoryBtn.addEventListener('click' , function(e) {
 		}
 		console.log("theEntry ===> ", theEntry);
 		console.log("folderFiles ===> ", folderFiles);
-		loadDirEntry(theEntry);
-    fetchMovieDetailsFromOMDB();
+        console.log("I reach here!!")        
+        // setTimeout(function(){
+        //     console.log("This is to check for moviesObjectArray == >", moviesObjectArray.length);
+        // }, loadDirEntry(theEntry)); 
+
+        loadDirEntry(theEntry);
+
+        setTimeout(function(){
+            fetchMovieDetailsFromOMDB(); 
+        },10000);
+        
 	});
 });
 
@@ -126,3 +180,4 @@ yearCollectionLink.addEventListener('click' , function(e) {
 // setTimeout(function(){
 //   MF.get_movies();
 // }, 5000); 
+
