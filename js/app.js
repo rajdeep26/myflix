@@ -1,6 +1,12 @@
+var screenWidth = screen.availWidth;
+var screenHeight = screen.availHeight;
+var width = 500;
+var height = 300;
 
 var chooseDirectoryBtn = document.querySelector('#chooseDirectoryID');
 var textarea = document.querySelector('textarea');
+var yearCollectionLink = document.querySelector("#moviesCollectionByYearID");
+// var yearCollectionLink = document.querySelector("#moviesCollectionByYearID");
 
 function errorHandler(e) {
 	console.error(e);
@@ -84,15 +90,18 @@ function loadDirEntry(_chosenEntry) {
     };
 
     readEntries(); // Start reading dirs.  
-    console.log("moviesObjectArray ===>", moviesObjectArray.length);
-    for (var i in moviesObjectArray){
-    	queryOmdb(moviesObjectArray[i].filename);
-    }
+  }
+}
+
+function fetchMovieDetailsFromOMDB() {
+  console.log("moviesObjectArray ===>", moviesObjectArray.length);
+  for (var i in moviesObjectArray){
+    queryOmdb(moviesObjectArray[i].filename);
   }
 }
 
 
-chooseDirectoryBtn.addEventListener('click', function(e) {
+chooseDirectoryBtn.addEventListener('click' , function(e) {
 	console.log("click event ==> ", e);
 	chrome.fileSystem.chooseEntry({type: 'openDirectory'}, function(theEntry, folderFiles) {
 		if (!theEntry) {
@@ -102,8 +111,17 @@ chooseDirectoryBtn.addEventListener('click', function(e) {
 		console.log("theEntry ===> ", theEntry);
 		console.log("folderFiles ===> ", folderFiles);
 		loadDirEntry(theEntry);
+    fetchMovieDetailsFromOMDB();
 	});
 });
+
+yearCollectionLink.addEventListener('click' , function(e) {
+  console.log("yearCollectionLink click event ==> ", e);
+  document.querySelector("#main-page").style.display = "none";
+  document.querySelector("#list-page").style.display = "block";
+});
+
+
 
 // setTimeout(function(){
 //   MF.get_movies();

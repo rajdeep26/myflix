@@ -12,9 +12,9 @@
   
   // Private properties
   var myflixDB = null,
-  moviesTable = null,
-  movieDetailsTable = null,
-  actorsTable = null;
+      moviesTable = null,
+      movieDetailsTable = null,
+      actorsTable = null;
 
   initialize_myflix_db();
 
@@ -94,7 +94,7 @@
       console.log("db connection done");
       myflixDB = db;
       moviesTable = db.getSchema().table('movies');
-      var movieDetailsTable = db.getSchema().table('movie_details');
+      // movieDetailsTable = db.getSchema().table('movie_details');
       // var actorsTable = db.getSchema().table('actors');
       console.log("db ==> ",db);
       console.log("myflixDB ==> ", myflixDB);

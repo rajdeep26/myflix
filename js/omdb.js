@@ -9,6 +9,7 @@ xhr.onload = function() {
     // ... enjoy your parsed json...
     if (json.Response ==  "False"){
         console.log("Sorry")
+        id +=1;
     } else {
         fetchedMovieData.push({
             id:movie_detail,
@@ -23,7 +24,7 @@ xhr.onload = function() {
             type: json.Type,
             release_date: json.Released,
         })
-        id+=1
+        id+=1;
         console.log("API called");
     }
 };

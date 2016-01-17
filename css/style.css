@@ -1,3 +1,7 @@
+#list-page {
+  display: none;
+}
+
 /* line 3, ../sass/_base.scss */
 .font-normal {
   font-size: 14px;
