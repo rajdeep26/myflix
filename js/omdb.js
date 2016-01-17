@@ -9,8 +9,9 @@ xhr.onload = function() {
     // ... enjoy your parsed json...
     if (json.Response ==  "False"){
         console.log("Sorry")
-        id +=1;
-    } else {
+        // id +=1;
+
+    } 
         fetchedMovieData.push({
             id:movie_detail,
             movie_id: json.imdbID,
@@ -23,14 +24,17 @@ xhr.onload = function() {
             poster_url: json.Poster,
             type: json.Type,
             release_date: json.Released,
-        })
-        id+=1;
+        });
+        console.log(json);
+        movie_detail+=1;
         console.log("API called");
-    }
+        console.log(fetchedMovieData.length);
+    
 };
 // Example:
 function queryOmdb(movieTitle){
     xhr.open('GET', 'http://www.omdbapi.com/?t=' + encodeURIComponent(movieTitle));    
+    console.log(movieTitle);
     xhr.send();
     console.log("calling API");
 }
