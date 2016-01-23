@@ -12,6 +12,10 @@
   border-radius: 0px !important;
 }
 
+html, body {
+  overflow-y: scroll;
+}
+
 
 /*TODO : Need to put this inside sass file*/
 /*=================================================================*/
