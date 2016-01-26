@@ -10,7 +10,7 @@
   ],
   "authors": [
     "Mahesh",
-    "Rajdeep Mandrekar", 
+    "Rajdeep Mandrekar",
     "Valindo Godinho"
   ],
   "license": "MIT",
@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.6",
-    "lovefield": "2.1.5"
+    "lovefield": "2.1.5",
+    "jquery": "~2.2.0"
   }
 }
